@@ -91,6 +91,12 @@
     <p class="text-center fs-4">Tidak ada Projeck</p>
 
 @endif
+
+
+<div class="d-flex justify-content-center ">
+    {{ $kumpulan_projeck->links() }}
+</div>
+
    
 
 @endsection

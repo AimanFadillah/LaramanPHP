@@ -44,3 +44,4 @@ class Projeck extends Model
     protected $guarded = ["id"];
     protected $with = ["kategori","user"];
 }
+

@@ -12,14 +12,5 @@ class KategoriController extends Controller
             "kategori" => kategori::all()
         ]);
     }
-
-
-    public function pilih(kategori $kategori){
-        return view("projeck",[
-            "tittle" => "kategori",
-            "judul" => "Kategori : " . $kategori->namaKategori,
-            "nama" => $kategori->namaKategori,
-            "kumpulan_projeck" => $kategori->projeck->load("user","kategori")
-        ]);
-    } 
+ 
 }
