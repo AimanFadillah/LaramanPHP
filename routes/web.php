@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\Projeck;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjeckController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\registrasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,9 @@ Route::get("/kategori",[KategoriController::class,'index']);
 Route::get("/user/{user:name}",[userController::class,'userProjeck']);
 
 Route::get("/user",[userController::class,'index']);
+
+Route::get("/login",[logincontroller::class,"index"]);
+
+Route::get("/registrasi",[registrasiController::class,"index"]);
+
+Route::post("/registrasi",[registrasiController::class,"store"]);
