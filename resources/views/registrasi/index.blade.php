@@ -43,7 +43,7 @@
                     </div>
                 </form>
 
-                <p class="ms-1 mt-3 text-center" style="font-size: 15px" >Udah punya akun bisa langsung <a  class="text-decoration-none fw-bold " href="/registrasi" >Login</a> </p>
+                <p class="ms-1 mt-3 text-center" style="font-size: 15px" >Udah punya akun bisa langsung <a  class="text-decoration-none fw-bold " href="/login" >Login</a> </p>
             </div>
 
         </div>

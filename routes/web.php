@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registrasiController;
+use App\Http\Controllers\dashbordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,16 @@ Route::get("/user/{user:name}",[userController::class,'userProjeck']);
 
 Route::get("/user",[userController::class,'index']);
 
-Route::get("/login",[logincontroller::class,"index"]);
+Route::get("/login",[loginController::class,"index"])->middleware("guest");
+
+Route::post("/login",[loginController::class,"authenticate"]);
+
+Route::post("/logout",[loginController::class,"logout"]);
 
 Route::get("/registrasi",[registrasiController::class,"index"]);
 
 Route::post("/registrasi",[registrasiController::class,"store"]);
+
+Route::get("/dashbord" , [dashbordController::class,"index"]);
+
+
