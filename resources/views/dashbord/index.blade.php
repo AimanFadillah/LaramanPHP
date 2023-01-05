@@ -1,5 +1,7 @@
-@extends("layout.utama")
-
+@extends('dashbord.bagian.utama')
+    
 @section('main')
-    <h1>Welcome {{ Auth()->user()->name }}</h1>
+    
+  <h1>Selamat Datang {{ auth()->user()->name }}</h1>
+
 @endsection

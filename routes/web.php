@@ -9,6 +9,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registrasiController;
 use App\Http\Controllers\dashbordController;
+use App\Http\Controllers\dashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,16 +39,15 @@ Route::get("/user/{user:name}",[userController::class,'userProjeck']);
 
 Route::get("/user",[userController::class,'index']);
 
-Route::get("/login",[loginController::class,"index"])->middleware("guest");
-
+Route::get("/login",[loginController::class,"index"])->name("login")->middleware("guest");
 Route::post("/login",[loginController::class,"authenticate"]);
-
 Route::post("/logout",[loginController::class,"logout"]);
 
-Route::get("/registrasi",[registrasiController::class,"index"]);
+Route::get("/registrasi",[registrasiController::class,"index"])->middleware("guest") ;
 
 Route::post("/registrasi",[registrasiController::class,"store"]);
 
-Route::get("/dashbord" , [dashbordController::class,"index"]);
+Route::get("/dashbord" , [dashbordController::class,"index"])->middleware("auth");
+Route::resource('/dashbord/projeck', dashController::class);
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\projeckControlller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +32,10 @@ class Projeck extends Model
             )
         );
         
+    }
+
+    public function getRouteKeyName(){
+        return 'slug';
     }
 
     public function kategori(){
