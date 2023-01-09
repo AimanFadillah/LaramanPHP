@@ -10,6 +10,11 @@ class kategori extends Model
     use HasFactory;
 
     protected $guarded = ["id"];
+    // protected $fillable = [
+    //     'namaKategori',
+    //     'slug'
+    // ];
+
 
     public function projeck(){
         return $this->hasMany(Projeck::class);

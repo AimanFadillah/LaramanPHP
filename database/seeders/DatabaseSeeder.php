@@ -71,6 +71,8 @@ class DatabaseSeeder extends Seeder
             "email" => "aiman@gmail.com",
             "password" => bcsqrt('123')
         ]);
+
+       
         
         
     }

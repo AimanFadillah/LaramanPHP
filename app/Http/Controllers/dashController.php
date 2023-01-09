@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projeck;
+use App\Models\kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+ 
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 class dashController extends Controller
 {
@@ -27,10 +32,12 @@ class dashController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashbord.projeck.create',[
+            "kategori" => kategori::all() 
+        ]);
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +45,27 @@ class dashController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->file('img')->store('projeck-img');
+
+        $validatedData = $request->validate([
+            "title" => "required|max:255",
+            "slug" => "required|unique:projecks",
+            "kategori_id" => "required",
+            "img" => "image|file|max:3024",
+            "body" => "required"
+        ]);
+
+        if($request->file('img')){
+            $validatedData['img'] = $request->file('img')->store('projeck-img');
+        }
+
+        $validatedData["user_id"] = auth()->user()->id;
+        $validatedData["excerpt"] = Str::limit( strip_tags( $request->body),200 );
+
+      
+        projeck::create($validatedData);
+
+        return redirect('/dashbord/projeck')->with('success','Berhasil Membuat Projeck');
     }
 
     /**
@@ -62,7 +89,10 @@ class dashController extends Controller
      */
     public function edit(projeck $projeck)
     {
-        //
+        return view('dashbord.projeck.edit',[
+            "projeck" => $projeck,
+            "kategori" => kategori::all() 
+        ]);
     }
 
     /**
@@ -74,7 +104,23 @@ class dashController extends Controller
      */
     public function update(Request $request, projeck $projeck)
     {
-        //
+        $rules = [
+            "title" => "required|max:255",
+            "kategori_id" => "required",
+            "body" => "required"
+        ];
+
+        if($request->slug != $projeck->slug){
+            $rules["slug"] = "required|unique:projecks";
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        $validatedData["excerpt"] = Str::limit( strip_tags( $request->body),200 );
+
+        projeck::where('id',$projeck->id)->update($validatedData);
+        return redirect('/dashbord/projeck')->with('success','Berhasil mengubah Projeck ' . $projeck->title );
     }
 
     /**
@@ -85,6 +131,15 @@ class dashController extends Controller
      */
     public function destroy(projeck $projeck)
     {
-        //
+        projeck::destroy($projeck->id);
+        return redirect('/dashbord/projeck')->with('success','Projeck Berhasil di Delete');
     }
+
+    // public function checkSlug (Request $request) {
+
+    //     $slug = SlugService::createSlug(projeck::class, 'slug', $request->title);
+
+    //     return response()->json( ["slug" => $slug ] );
+    // }
+
 }

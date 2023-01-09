@@ -5,10 +5,32 @@ namespace App\Models;
 use App\Http\Controllers\projeckControlller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use Cviebrock\EloquentSluggable\Sluggable;
 
 class Projeck extends Model
 {
     use HasFactory;
+
+    // public function sluggable(): array
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => 'title'
+    //         ]
+    //     ];
+    // }
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'excerpt',
+        'img',
+        'kategori_id',
+        'user_id',
+    ];
+
+    // protected $guarded = ["id"];
 
     public function scopeCari($query , array $data){
 
@@ -46,7 +68,7 @@ class Projeck extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected $guarded = ["id"];
+        
     protected $with = ["kategori","user"];
 }
 

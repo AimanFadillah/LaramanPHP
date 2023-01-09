@@ -37,8 +37,18 @@
    
 
     @if ($kumpulan_projeck->count())
+
     <div class="card mb-3">
-        <img src="http://source.unsplash.com/1600x900?{{ $kumpulan_projeck[0]->kategori->namaKategori }}" class="card-img-top" alt="{{ $kumpulan_projeck[0]->kategori->namaKategori }}">
+       @if($kumpulan_projeck[0]->img)
+            <div style="max-height:400px ;overflow:hidden; "   > 
+                <img src="{{ asset('storage/'. $kumpulan_projeck[0]->img  ) }}" class="img-fluid shadow rounded " alt="{{ $kumpulan_projeck[0]->kategori->namaKategori }}">
+            </div>
+
+        @else
+            <img src="http://source.unsplash.com/1200x400?{{ $$kumpulan_projeck[0]->kategori->namaKategori }}" class="img-fluid my-3 
+            shadow rounded " alt="{{ $$kumpulan_projeck[0]->kategori->namaKategori }}">
+            @endif
+
         <div class="card-body text-center">
         <h2 class="card-title"><a class="text-decoration-none text-black" href="/projeck/{{ $kumpulan_projeck[0]->slug }}" >{{ $kumpulan_projeck[0]->title }}<a></h2>
         <h6 class="mb-3">
@@ -61,8 +71,19 @@
                     
 
                     <div class="px-2 py-1 position-absolute" style="background-color: rgba(0,0,0,0.5)" ><a class="text-decoration-none text-white" href="projeck?kategori={{ $projecknya->kategori->slug }}">{{ $projecknya->kategori->namaKategori }}</a></div>
-                    <img src="http://source.unsplash.com/500x400?{{ $projecknya->kategori->namaKategori }}" class="card-img-top" alt="{{ $projecknya->kategori->namaKategori }}">
+
+                    @if($projecknya->img)
+                        <img src="{{ asset('storage/'. $projecknya->img  ) }}" class="card-img-top" alt="{{ $projecknya->kategori->namaKategori }}">
+            
+
+                    @else
+                        <img src="http://source.unsplash.com/500x400?{{ $projecknya->kategori->namaKategori }}" class="card-img-top" alt="{{ $projecknya->kategori->namaKategori }}">
+                    @endif 
+
+                    
                     <div class="card-body">
+                    
+
                         <h5 class="card-title">
                           <a class="text-decoration-none text-black" href="/projeck/{{ $projecknya->slug }}/" > {{ $projecknya->title }} </a>
                         </h5>

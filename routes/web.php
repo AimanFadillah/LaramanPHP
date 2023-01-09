@@ -49,5 +49,5 @@ Route::post("/registrasi",[registrasiController::class,"store"]);
 
 Route::get("/dashbord" , [dashbordController::class,"index"])->middleware("auth");
 Route::resource('/dashbord/projeck', dashController::class);
-
+Route::get("/dashbord/projeck/checkSlug",[dashController::class,'checkSlug'])->middleware("auth");
 

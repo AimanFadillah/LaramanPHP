@@ -12,13 +12,21 @@
       }
 
     </style>
+    {{-- trix editor --}}
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="css/dashbord.css">
-    
+    {{-- menghilangkan trix upload --}}
+    <style>
+      trix-toolbar [data-trix-button-group="file-tools"]{
+        display: none;
+      }
+    </style>
+
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
   </head>
