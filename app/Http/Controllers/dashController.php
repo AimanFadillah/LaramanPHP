@@ -6,7 +6,8 @@ use App\Models\Projeck;
 use App\Models\kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
- 
+use Illuminate\Support\Facades\Storage;
+
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 
@@ -107,6 +108,7 @@ class dashController extends Controller
         $rules = [
             "title" => "required|max:255",
             "kategori_id" => "required",
+            "img" => "image|file|max:3024",
             "body" => "required"
         ];
 
@@ -115,6 +117,15 @@ class dashController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        if($request->file('img')){
+
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+
+            $validatedData['img'] = $request->file('img')->store('projeck-img');
+        }
 
         $validatedData["user_id"] = auth()->user()->id;
         $validatedData["excerpt"] = Str::limit( strip_tags( $request->body),200 );
@@ -131,6 +142,11 @@ class dashController extends Controller
      */
     public function destroy(projeck $projeck)
     {
+        if($projeck->img){
+            Storage::delete($projeck->img);
+        }
+
+
         projeck::destroy($projeck->id);
         return redirect('/dashbord/projeck')->with('success','Projeck Berhasil di Delete');
     }

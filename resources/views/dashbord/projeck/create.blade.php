@@ -50,7 +50,8 @@
       {{-- img --}}
       <div class="mb-3">
         <label for="img" class="form-label">Upload img</label>
-        <img class="img-preview img-fluid">
+        <img class="img-preview img-fluid  mb-3 col-sm-5 ">
+
         <input class="form-control @error('img') is-invalid  @enderror " type="file" id="img" name="img" onchange="previewImage()" >
         @error('img')
         <div class="invalid-feed">
@@ -116,7 +117,7 @@
     imgPreview.style.display = 'block';
 
     const oFReader = new FileReader();
-    oFReade.readAsDataURL(image.files[0]);
+    oFReader.readAsDataURL(image.files[0]);
 
     oFReader.onload = function (oFREvent){
       imgPreview.src = oFREvent.target.result;

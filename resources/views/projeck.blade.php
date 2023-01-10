@@ -45,8 +45,8 @@
             </div>
 
         @else
-            <img src="http://source.unsplash.com/1200x400?{{ $$kumpulan_projeck[0]->kategori->namaKategori }}" class="img-fluid my-3 
-            shadow rounded " alt="{{ $$kumpulan_projeck[0]->kategori->namaKategori }}">
+            <img src="http://source.unsplash.com/1200x400?{{ $kumpulan_projeck[0]->kategori->namaKategori }}" class="img-fluid my-3 
+            shadow rounded " alt="{{ $kumpulan_projeck[0]->kategori->namaKategori }}">
             @endif
 
         <div class="card-body text-center">
