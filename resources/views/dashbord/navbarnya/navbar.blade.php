@@ -31,8 +31,19 @@
                 <i class="bi bi-file-earmark fs-4 "></i> Projek
               </a>
             </li>
+
+            @can('admin')
+            <li class="nav-item">
+              <a class="nav-link fw-bold {{ Request::is("dashbord/kategori*") ? 'text-primary' : 'text-dark' }} " href="/dashbord/kategori">
+                <span data-feather="file" class="align-text-bottom"></span>
+                <i class="bi bi-bookmarks"></i> Kategori
+              </a>
+            </li>
+           @endcan
            
           </ul>
+
+          
   
           
         </div>

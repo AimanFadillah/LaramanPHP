@@ -10,6 +10,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\registrasiController;
 use App\Http\Controllers\dashbordController;
 use App\Http\Controllers\dashController;
+use App\Http\Controllers\AdminKategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::get("/registrasi",[registrasiController::class,"index"])->middleware("gue
 Route::post("/registrasi",[registrasiController::class,"store"]);
 
 Route::get("/dashbord" , [dashbordController::class,"index"])->middleware("auth");
-Route::resource('/dashbord/projeck', dashController::class);
+Route::resource('/dashbord/projeck', dashController::class)->middleware("auth");
 Route::get("/dashbord/projeck/checkSlug",[dashController::class,'checkSlug'])->middleware("auth");
 
+Route::resource('/dashbord/kategori', AdminKategoriController::class)->middleware("admin");
